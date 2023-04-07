@@ -32,6 +32,12 @@ def generate_data(data_type, data_size):
     elif data_type == 'Gamma':
         data = np.random.gamma(size=data_size, shape=2) * 100
         summary = 'A gamma distribution is a continuous probability distribution that models the time until a specified number of events occur in a Poisson process.'
+    elif data_type == 'Skewed':
+            data = np.random.gamma(size=data_size, shape=2) * 100
+            data = (data - np.mean(data)) / np.std(data)  # standardize data
+            skewness = 10  # specify skewness parameter
+            data = abs((data ** 2 + skewness) * np.sign(data))
+            summary = 'A skewed distribution is a type of non-symmetric probability distribution that has a longer tail on one side than the other.'
     else:
         data = []
         summary = ''
@@ -58,7 +64,7 @@ def plot_data(data, plot_type):
     return fig
 
 # Define sidebar inputs
-data_type = st.sidebar.selectbox('Select Data Type', ('Normal', 'Non-Normal', 'Random', 'Linear', 'Exponential', 'Poisson', 'Gamma'))
+data_type = st.sidebar.selectbox('Select Data Type', ('Normal', 'Non-Normal', 'Random', 'Linear', 'Exponential', 'Poisson', 'Gamma', 'Skewed'))
 data_size = st.sidebar.slider('Select Data Size', min_value=10, max_value=1000, step=10, value=350)
 plot_type = st.sidebar.selectbox('Select Plot Type', ('Histogram', 'Line Chart', 'Scatterplot', 'Heatmap', 'Box and Whisker Plot', 'Bar Chart'))
 
