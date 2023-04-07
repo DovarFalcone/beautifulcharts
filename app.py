@@ -33,7 +33,7 @@ def generate_data(data_type, data_size):
         data = np.random.gamma(size=data_size, shape=2) * 100
         summary = 'A gamma distribution is a continuous probability distribution that models the time until a specified number of events occur in a Poisson process.'
     elif data_type == 'Skewed':
-            data = np.random.gamma(size=data_size, shape=2) * 100
+            data = np.random.random(size=data_size) * 100
             data = (data - np.mean(data)) / np.std(data)  # standardize data
             skewness = 10  # specify skewness parameter
             data = abs((data ** 2 + skewness) * np.sign(data))
