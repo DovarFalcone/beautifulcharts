@@ -105,4 +105,8 @@ link = 'https://github.com/DovarFalcone/beautifulcharts'
 text = 'beautifulcharts'
 
 # Show footer with the link
-components.html(f'<div style="color:white">Created using the help of ChatGPT with ❤️. View <a href="{link}" target="_blank" style="color:white">{text}</a> on GitHub.</div>', height=30)
+components.html(
+    f'<div style="color:white">'
+    f'Created using the help of ChatGPT with ❤️.\n'
+    f'View <a href="{link}" target="_blank" style="color:white">{text}</a> on GitHub.'
+    f'</div>', height=30)
