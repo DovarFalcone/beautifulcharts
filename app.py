@@ -1,13 +1,25 @@
 import streamlit as st
+import streamlit.components.v1 as components
 import numpy as np
 import pandas as pd
 import plotly.express as px
 
-# Set dark theme
-st.set_page_config(page_title='Data Visualization App', page_icon=':chart_with_upwards_trend:', layout='wide')
+
+# Set page configs
+st.set_page_config(page_title='Data Visualization App', page_icon=':chart_with_upwards_trend:', layout='wide', initial_sidebar_state=st.session_state.sidebar_state)
 
 # Set sidebar title
 st.sidebar.title('Data Types')
+
+# Initialize a session state variable that tracks the sidebar state (either 'expanded' or 'collapsed').
+if 'sidebar_state' not in st.session_state:
+    st.session_state.sidebar_state = 'expanded'
+
+# Toggle sidebar state between 'expanded' and 'collapsed'.
+if st.button('Options'):
+    st.session_state.sidebar_state = 'collapsed' if st.session_state.sidebar_state == 'expanded' else 'expanded'
+    # Force an app rerun after switching the sidebar state.
+    st.experimental_rerun()
 
 # Define function to generate data
 def generate_data(data_type, data_size):
@@ -71,6 +83,9 @@ plot_type = st.sidebar.selectbox('Select Plot Type', ('Histogram', 'Line Chart',
 # Generate data and summary
 data, summary = generate_data(data_type, data_size)
 
+# Set page title
+st.title(f"Visualization of {data_type} Distribution")
+
 # Display summary
 st.write(summary)
 
@@ -86,5 +101,9 @@ else:
 if st.button('Refresh Data'):
     data, summary = generate_data(data_type, data_size)
 
-# Show footer
-st.write('Created using the help of ChatGPT with ❤️ using Streamlit')
+# Set the link and the display text
+link = 'https://github.com/DovarFalcone/beautifulcharts'
+text = 'beautifulcharts'
+
+# Show footer with the link
+components.html(f'<div style="color:white">Created using the help of ChatGPT with ❤️. View <a href="{link}" target="_blank" style="color:white">{text}</a> on GitHub.</div>', height=30)
