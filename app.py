@@ -109,4 +109,4 @@ components.html(
     f'<div style="color:white">'
     f'Created using the help of ChatGPT with ❤️.\n'
     f'View <a href="{link}" target="_blank" style="color:white">{text}</a> on GitHub.'
-    f'</div>', height=30)
+    f'</div>', height=80)
