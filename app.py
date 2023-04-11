@@ -4,22 +4,21 @@ import numpy as np
 import pandas as pd
 import plotly.express as px
 
-
-# Set page configs
-st.set_page_config(page_title='Data Visualization App', page_icon=':chart_with_upwards_trend:', layout='wide', initial_sidebar_state=st.session_state.sidebar_state)
-
-# Set sidebar title
-st.sidebar.title('Data Types')
-
 # Initialize a session state variable that tracks the sidebar state (either 'expanded' or 'collapsed').
 if 'sidebar_state' not in st.session_state:
     st.session_state.sidebar_state = 'expanded'
+
+# Set page configs
+st.set_page_config(page_title='Data Visualization App', page_icon=':chart_with_upwards_trend:', layout='wide', initial_sidebar_state=st.session_state.sidebar_state)
 
 # Toggle sidebar state between 'expanded' and 'collapsed'.
 if st.button('Options'):
     st.session_state.sidebar_state = 'collapsed' if st.session_state.sidebar_state == 'expanded' else 'expanded'
     # Force an app rerun after switching the sidebar state.
     st.experimental_rerun()
+
+# Set sidebar title
+st.sidebar.title('Data Types')
 
 # Define function to generate data
 def generate_data(data_type, data_size):
